@@ -36,3 +36,10 @@ Run the tests as follows:
 ```bash
 gradle test
 ```
+
+The tests currently only ensure that input MVT files can be parsed without errors.
+
+No assertions on content are currently done.
+
+If you'd like to check to see if your MVT file can be parsed, drop it in the `./fixtures`
+directory and it will be automatically parsed in the tests.
