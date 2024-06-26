@@ -1,6 +1,9 @@
 all: build
 
 build:
-	gradle :spotlessApply test
+	gradle :spotlessApply build
+
+test:
+	gradle test
 
 .PHONY: all build
