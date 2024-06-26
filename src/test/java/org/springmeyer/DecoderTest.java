@@ -27,11 +27,10 @@ public class DecoderTest {
         System.out.println("Layer: " + layer.name);
         for (int i = 0; i < layer.length; i++) {
           VectorTileFeature feature = layer.feature(i);
-          feature.loadGeometry();
-          // System.out.println("  Feature: " + feature.id);
-          // System.out.println("    Properties: " + feature.properties);
-          // System.out.println("    Type: " + VectorTileFeature.types[feature.type]);
-          // System.out.println("Geometry: " + feature.loadGeometry());
+          System.out.println("  Feature: " + feature.id);
+          System.out.println("    Properties: " + feature.properties);
+          System.out.println("    Type: " + VectorTileFeature.types[feature.type]);
+          System.out.println("Geometry: " + feature.loadGeometry());
         }
       }
     } catch (IOException e) {
