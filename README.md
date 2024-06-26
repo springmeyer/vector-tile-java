@@ -1,8 +1,8 @@
 # vector-tile-java
 
-A Java library for efficient reading of Mapbox Vector Tiles
+A Java library for efficient reading of Mapbox Vector Tiles.
 
-This libraries is modeled after these high performance Javascript libraries:
+This libraries is modeled after these high-performance Javascript libraries:
 
 - https://github.com/mapbox/vector-tile-js
 - https://github.com/mapbox/pbf
@@ -11,7 +11,7 @@ This libraries is modeled after these high performance Javascript libraries:
 
 This library has no external dependencies.
 
-Use it like:
+Use it as follows:
 
 ```java
     // Where `buf` is a `byte[]` representing an uncompressed Mapbox Vector Tile
@@ -31,7 +31,7 @@ Use it like:
 
 ## Developing
 
-Run the tests like:
+Run the tests as follows:
 
 ```bash
 gradle test
