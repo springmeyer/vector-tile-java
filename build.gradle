@@ -1,0 +1,54 @@
+plugins {
+    id 'java-library'
+    id('com.diffplug.spotless') version '6.25.0'
+    id 'jacoco'
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url 'https://maven.ecc.no/releases'
+    }
+}
+
+dependencies {
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+test {
+    useJUnitPlatform()
+    testLogging {
+        outputs.upToDateWhen {false}
+        showStandardStreams = true
+        events "passed", "skipped", "failed"
+        exceptionFormat "full"
+    }
+    finalizedBy jacocoTestReport
+}
+
+jacocoTestReport {
+    dependsOn test
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(17)
+    }
+}
+
+spotless {
+    java {
+        importOrder()
+        target 'src/*/java/**/*.java'
+        googleJavaFormat('1.17.0')
+        removeUnusedImports()
+     }
+}
+
+
+gradle.projectsEvaluated {
+    tasks.withType(JavaCompile) {
+        options.compilerArgs << "-Xlint:unchecked"
+    }
+}
