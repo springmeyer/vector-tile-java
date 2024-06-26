@@ -10,8 +10,11 @@ public class DecoderTest {
   public void decode() throws IOException {
     Path fixturesDir = Path.of("./fixtures");
     Files.walk(fixturesDir)
-      .filter(path -> Files.isRegularFile(path) && (path.toString().endsWith(".mvt") || path.toString().endsWith(".pbf")))
-      .forEach(this::parseFile);
+        .filter(
+            path ->
+                Files.isRegularFile(path)
+                    && (path.toString().endsWith(".mvt") || path.toString().endsWith(".pbf")))
+        .forEach(this::parseFile);
   }
 
   private void parseFile(Path filePath) {
