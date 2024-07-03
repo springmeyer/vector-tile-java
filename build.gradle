@@ -2,6 +2,7 @@ plugins {
     id 'java-library'
     id('com.diffplug.spotless') version '6.25.0'
     id 'jacoco'
+    id 'jvm-test-suite'
 }
 
 repositories {
@@ -11,9 +12,30 @@ repositories {
     }
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter:5.9.2'
-    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+testing {
+    suites {
+        test {
+            useJUnitJupiter()
+        }
+
+        integrationTest(JvmTestSuite) {
+            dependencies {
+                implementation project()
+            }
+
+            targets {
+                all {
+                    testTask.configure {
+                        shouldRunAfter(test)
+                    }
+                }
+            }
+        }
+    }
+}
+
+tasks.named('check') {
+    dependsOn(testing.suites.integrationTest)
 }
 
 test {
