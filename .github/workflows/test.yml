@@ -10,8 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: taiki-e/install-action@v2
-        with: { tool: just }
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
@@ -21,12 +19,15 @@ jobs:
 
   test-java:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        java-version: [ '11', '17' ]
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-java@v4
         with:
           distribution: 'temurin'
-          java-version: '17'
+          java-version: ${{ matrix.java-version }}
       - uses: gradle/actions/setup-gradle@v3
       - name: Test Java code
         run: gradle test

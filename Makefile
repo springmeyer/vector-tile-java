@@ -6,4 +6,7 @@ build:
 test:
 	gradle test
 
+clean:
+	rm -rf build
+
 .PHONY: all build
